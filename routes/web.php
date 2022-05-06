@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [MovieController::class, 'index']);
 Route::get('/movies/{movie:slug}', [MovieController::class, 'show']);
 
-Route::get('/admin/login', [AdminMovieController::class, 'index']);
-Route::get('/admin/dashboard', [AdminMovieController::class, 'show']);
+Route::get('/admin/login', [AdminMovieController::class, 'index'])->middleware('guest');
+Route::post('/admin/sessions', [AdminMovieController::class, 'store'])->middleware('guest');
+Route::get('/admin/all-movies', [AdminMovieController::class, 'show']);
+Route::get('/admin/add-movie', [AdminMovieController::class, 'show']);
 
 // TODO LANGUAGE
