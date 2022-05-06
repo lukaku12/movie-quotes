@@ -13,7 +13,7 @@ class AdminMovieController extends Controller
 
 	public function show()
 	{
-		return view('admin.dashboard');
+		return view('admin.all-movies');
 	}
 
 	public function store()
