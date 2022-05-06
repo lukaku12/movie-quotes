@@ -2,15 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
+
 class MovieController extends Controller
 {
-	public function index()
+	public function index(Movie $movie)
 	{
-		return view('index');
+		$randomMovie = $movie::all()->random();
+		$chosenMovieQuote = $randomMovie->quotes;
+
+		return view('index', [
+			'movie' => $randomMovie,
+			'quote' => $chosenMovieQuote,
+		]);
 	}
 
-	public function show()
+	public function show(Movie $movie)
 	{
-		return view('components.movie-quotes');
+		return view('components.movie-quotes', [
+			'movie'  => $movie,
+		]);
 	}
 }
