@@ -1,19 +1,27 @@
 <x-layout>
-    <div class="w-52 bg-cyan-600 h-screen">
-        <div class="p-4 text-white text-xl">
-            <h1>DASHBOARD</h1>
-        </div>
-        <nav>
-            <div class="pl-4 pt-2">
-                <a href="all-movies">All Movies</a>
-            </div>
-            <div class="pl-4 pt-2">
-                <a href="add-movies">Add Movie</a>
-            </div>
-            <div class="pl-4 pt-2">
-                <a href="add-quote">Add Quote</a>
-            </div>
-        </nav>
+    <div class="flex">
+        <x-admin.navigation/>
+            <nav>
+                <div class="px-12 h-full overflow-auto">
+                    <h1 class="text-4xl my-5 text-amber-50">All Movies</h1>
+                    <div class="grid my-5 lg:grid-cols-4 gap-5 md:grid-cols-2 sm:grid-cols-1">
+                        {{-- movie--}}
+                        @foreach($movies as $movie)
+                            <div class="w-64">
+                                <img
+                                    class="border border-slate-900 rounded-xl rounded-b-none  aspect-square"
+                                    src="{{ URL::asset('images/imagemovieImage.png') }}" alt="">
+                                <div class="bg-amber-50 p-3 w-full border border-slate-900 rounded-md rounded-t-none">
+                                    <h2 class="">{{ $movie->title }}</h2>
+                                    <div class="flex justify-between w-full border-t pt-1">
+                                        <button class="bg-amber-300 py-1 px-2 rounded-md hover:bg-amber-500">edit</button>
+                                        <button class="bg-amber-300 py-1 px-2 rounded-md hover:bg-amber-500">delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </nav>
     </div>
-
 </x-layout>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
 use Illuminate\Validation\ValidationException;
 
 class AdminMovieController extends Controller
@@ -13,7 +14,9 @@ class AdminMovieController extends Controller
 
 	public function show()
 	{
-		return view('admin.all-movies');
+		return view('admin.all-movies', [
+			'movies' => Movie::all(),
+		]);
 	}
 
 	public function store()
@@ -30,6 +33,6 @@ class AdminMovieController extends Controller
 		}
 		session()->regenerate();
 
-		return redirect('/admin/all-movies');
+		return redirect('/admin/all-movies.blade.php');
 	}
 }

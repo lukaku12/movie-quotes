@@ -28,7 +28,7 @@ class CreateAdmin extends Command
 	 */
 	public function handle()
 	{
-		$this->info('start');
+		$this->info('Hello');
 		$username = $this->ask('Enter UserName');
 		$email = $this->ask('Enter Email');
 		$password = $this->ask('Enter Password');
@@ -37,6 +37,7 @@ class CreateAdmin extends Command
 			'email'    => $email,
 			'password' => bcrypt($password),
 		]);
+		$this->info('Admin Created Successfully!');
 		return 0;
 	}
 }

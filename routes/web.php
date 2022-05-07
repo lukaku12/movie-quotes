@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminMovieController;
+use App\Http\Controllers\AdminQuoteController;
 use App\Http\Controllers\MovieController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +21,9 @@ Route::get('/movies/{movie:slug}', [MovieController::class, 'show']);
 
 Route::get('/admin/login', [AdminMovieController::class, 'index'])->middleware('guest');
 Route::post('/admin/sessions', [AdminMovieController::class, 'store'])->middleware('guest');
-Route::get('/admin/all-movies', [AdminMovieController::class, 'show']);
-Route::get('/admin/add-movie', [AdminMovieController::class, 'show']);
 
-// TODO LANGUAGE
+Route::get('/admin/all-movies', [AdminMovieController::class, 'show']);
+//Route::get('/admin/add-movie', [AdminMovieController::class, 'show']);
+
+Route::get('/admin/all-quotes', [AdminQuoteController::class, 'index']);
+//Route::get('/admin/add-quotes', [AdminQuoteController::class, 'index']);
