@@ -21,8 +21,8 @@ class AdminMovieController extends Controller
 	public function create()
 	{
 		$attributes = request()->validate([
-			'title' => 'required|min:3|max:200',
-			'slug'  => 'required|min:3|max:200',
+			'title' => 'required|min:3|max:200|unique:movies,title',
+			'slug'  => 'required|min:3|max:200|unique:movies,slug',
 		]);
 		Movie::create($attributes);
 

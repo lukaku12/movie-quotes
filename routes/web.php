@@ -31,4 +31,5 @@ Route::post('/admin/add-movie/create', [AdminMovieController::class, 'create'])-
 //quote actions
 Route::get('/admin/all-quotes', [AdminQuoteController::class, 'index'])->middleware('admin');
 Route::get('/admin/add-quote', [AdminQuoteController::class, 'show'])->middleware('admin');
+Route::post('/admin/add-quote/create', [AdminQuoteController::class, 'create'])->middleware('admin');
 #END ADMIN SECTION

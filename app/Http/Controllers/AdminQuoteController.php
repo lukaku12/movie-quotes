@@ -17,4 +17,15 @@ class AdminQuoteController extends Controller
 	{
 		return view('admin.add-quote');
 	}
+
+	public function create()
+	{
+		$attributes = request()->validate([
+			'title'     => 'required|min:3|max:200|unique:quotes,title',
+			'movie_id'  => 'required',
+		]);
+		Quote::create($attributes);
+
+		return redirect()->back();
+	}
 }
