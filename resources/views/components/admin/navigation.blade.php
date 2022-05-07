@@ -2,16 +2,8 @@
     <div class="p-4 text-white text-xl">
         <h1 class="text-2xl">DASHBOARD</h1>
     </div>
-    <div class="p-3 rounded-xl border bg-amber-300 m-1">
-        <a href="all-movies">All Movies</a>
-    </div>
-    <div class="p-3 rounded-xl border bg-amber-300 m-1">
-        <a href="all-quotes">All Quotes</a>
-    </div>
-    <div class="p-3 rounded-xl border bg-amber-300 m-1">
-        <a href="add-movie">Add Movie</a>
-    </div>
-    <div class="p-3 rounded-xl border bg-amber-300 m-1">
-        <a href="add-quote">Add Quote</a>
-    </div>
+    <x-admin.navigation-links href="all-movies" name="All Movies"  />
+    <x-admin.navigation-links href="all-quotes" name="All Quotes" />
+    <x-admin.navigation-links href="add-movie" name="Add Movie" />
+    <x-admin.navigation-links href="add-quote" name="Add Quote" />
 </div>
