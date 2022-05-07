@@ -12,4 +12,9 @@ class AdminQuoteController extends Controller
 			'quotes' => $quote::all(),
 		]);
 	}
+
+	public function show(Quote $quote)
+	{
+		return view('admin.add-quote');
+	}
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminMovieController;
+use App\Http\Controllers\AdminSessionController;
 use App\Http\Controllers\AdminQuoteController;
 use App\Http\Controllers\MovieController;
 use Illuminate\Support\Facades\Route;
@@ -15,15 +16,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//index page
 Route::get('/', [MovieController::class, 'index']);
 Route::get('/movies/{movie:slug}', [MovieController::class, 'show']);
-
-Route::get('/admin/login', [AdminMovieController::class, 'index'])->middleware('guest');
-Route::post('/admin/sessions', [AdminMovieController::class, 'store'])->middleware('guest');
-
-Route::get('/admin/all-movies', [AdminMovieController::class, 'show'])->middleware('admin');
-//Route::get('/admin/add-movie', [AdminMovieController::class, 'show']);
-
+//login
+Route::get('/admin/login', [AdminSessionController::class, 'index'])->middleware('guest');
+Route::post('/admin/sessions', [AdminSessionController::class, 'store'])->middleware('guest');
+//movie actions
+Route::get('/admin/all-movies', [AdminMovieController::class, 'index'])->middleware('admin');
+Route::get('/admin/add-movie', [AdminMovieController::class, 'show'])->middleware('admin');
+//quote actions
 Route::get('/admin/all-quotes', [AdminQuoteController::class, 'index'])->middleware('admin');
-//Route::get('/admin/add-quotes', [AdminQuoteController::class, 'index']);
+Route::get('/admin/add-quote', [AdminQuoteController::class, 'show'])->middleware('admin');
