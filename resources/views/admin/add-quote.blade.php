@@ -9,6 +9,7 @@
             </div>
             <form class=" w-3/5 flex flex-col bg-cyan-50 p-7 rounded-xl"
                   method="POST"
+                  enctype="multipart/form-data"
                   action="/admin/add-quote/create">
                 @csrf
                 <div class="mb-4">
@@ -23,6 +24,9 @@
                         type="text"
                         required
                         class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    @error('quote')
+                        <p class="mt-1 text-red-600">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-4">
                     <label
@@ -35,6 +39,9 @@
                         name="thumbnail"
                         type="file"
                         class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    @error('thumbnail')
+                        <p class="mt-1 text-red-600">{{ $message }}</p>
+                    @enderror
                 </div>
                 <label
                     for="movie_id"
@@ -50,6 +57,9 @@
                         </option>
                     @endforeach
                 </select>
+                @error('movie_id')
+                    <p class="mt-1 text-red-600">{{ $message }}</p>
+                @enderror
                 <div>
                     <button
                         type="submit"

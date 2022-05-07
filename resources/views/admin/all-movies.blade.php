@@ -9,12 +9,16 @@
                     <div class="w-72">
                         <img
                             class="border border-slate-900 rounded-xl rounded-b-none  aspect-video"
-                            src="{{ URL::asset('images/imagemovieImage.png') }}" alt="">
+                            src="{{ asset('storage/' . $movie->quotes[0]->thumbnail) }}" alt="">
                         <div class="bg-amber-50 p-3 w-full border border-slate-900 rounded-md rounded-t-none">
                             <h1 class="text-xl">{{ $movie->title }}</h1>
                             <div class="flex justify-between w-full border-t pt-1">
                                 <button class="bg-amber-300 py-1 px-2 rounded-md hover:bg-amber-500">edit</button>
-                                <button class="bg-amber-300 py-1 px-2 rounded-md hover:bg-amber-500">delete</button>
+                                <form action="/admin/all-movies/{{ $movie->id }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="bg-amber-300 py-1 px-2 rounded-md hover:bg-amber-500">delete</button>
+                                </form>
                             </div>
                         </div>
                     </div>

@@ -22,10 +22,20 @@ class AdminQuoteController extends Controller
 	{
 		$attributes = request()->validate([
 			'title'     => 'required|min:3|max:200|unique:quotes,title',
+			'thumbnail' => 'required|image',
 			'movie_id'  => 'required',
 		]);
+		$attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+
 		Quote::create($attributes);
 
 		return redirect()->back();
+	}
+
+	public function destroy(Quote $quote)
+	{
+		$quote->delete();
+
+		return back();
 	}
 }

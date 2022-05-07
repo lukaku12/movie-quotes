@@ -28,8 +28,10 @@ Route::post('/admin/sessions', [AdminSessionController::class, 'store'])->middle
 Route::get('/admin/all-movies', [AdminMovieController::class, 'index'])->middleware('admin');
 Route::get('/admin/add-movie', [AdminMovieController::class, 'show'])->middleware('admin');
 Route::post('/admin/add-movie/create', [AdminMovieController::class, 'create'])->middleware('admin');
+Route::delete('admin/all-movies/{movie}', [AdminMovieController::class, 'destroy'])->middleware('admin');
 //quote actions
 Route::get('/admin/all-quotes', [AdminQuoteController::class, 'index'])->middleware('admin');
 Route::get('/admin/add-quote', [AdminQuoteController::class, 'show'])->middleware('admin');
 Route::post('/admin/add-quote/create', [AdminQuoteController::class, 'create'])->middleware('admin');
+Route::delete('admin/all-quotes/{quote}', [AdminMovieController::class, 'destroy'])->middleware('admin');
 #END ADMIN SECTION

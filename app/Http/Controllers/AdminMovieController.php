@@ -28,4 +28,11 @@ class AdminMovieController extends Controller
 
 		return redirect()->back();
 	}
+
+	public function destroy(Movie $movie)
+	{
+		$movie->delete();
+
+		return back();
+	}
 }
