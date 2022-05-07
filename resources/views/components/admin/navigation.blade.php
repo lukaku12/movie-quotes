@@ -12,6 +12,6 @@
         <a href="add-movie">Add Movie</a>
     </div>
     <div class="p-3 rounded-xl border bg-amber-300 m-1">
-        <a href="add-quote">Add Quotes</a>
+        <a href="add-quote">Add Quote</a>
     </div>
 </div>

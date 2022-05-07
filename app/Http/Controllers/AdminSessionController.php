@@ -25,6 +25,6 @@ class AdminSessionController extends Controller
 		}
 		session()->regenerate();
 
-		return redirect('/admin/all-movies.blade.php');
+		return redirect('/admin/all-movies');
 	}
 }

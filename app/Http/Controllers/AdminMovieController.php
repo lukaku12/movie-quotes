@@ -17,4 +17,15 @@ class AdminMovieController extends Controller
 	{
 		return view('admin.add-movie');
 	}
+
+	public function create()
+	{
+		$attributes = request()->validate([
+			'title' => 'required|min:3|max:200',
+			'slug'  => 'required|min:3|max:200',
+		]);
+		Movie::create($attributes);
+
+		return redirect()->back();
+	}
 }
