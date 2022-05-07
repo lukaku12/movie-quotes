@@ -3,7 +3,7 @@
         <h1 class="text-2xl">DASHBOARD</h1>
     </div>
     <div class="p-3 rounded-xl border bg-amber-300 m-1">
-        <a href="all-movies">All Movie</a>
+        <a href="all-movies">All Movies</a>
     </div>
     <div class="p-3 rounded-xl border bg-amber-300 m-1">
         <a href="all-quotes">All Quotes</a>

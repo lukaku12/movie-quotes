@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Laravel MovieQuotes</title>
 </head>
-<body class="bg-neutral-600">
+<body class="bg-neutral-600 overflow-x-hidden">
     <x-language-wrapper/>
     {{ $slot }}
 </body>

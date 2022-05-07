@@ -22,8 +22,8 @@ Route::get('/movies/{movie:slug}', [MovieController::class, 'show']);
 Route::get('/admin/login', [AdminMovieController::class, 'index'])->middleware('guest');
 Route::post('/admin/sessions', [AdminMovieController::class, 'store'])->middleware('guest');
 
-Route::get('/admin/all-movies', [AdminMovieController::class, 'show']);
+Route::get('/admin/all-movies', [AdminMovieController::class, 'show'])->middleware('admin');
 //Route::get('/admin/add-movie', [AdminMovieController::class, 'show']);
 
-Route::get('/admin/all-quotes', [AdminQuoteController::class, 'index']);
+Route::get('/admin/all-quotes', [AdminQuoteController::class, 'index'])->middleware('admin');
 //Route::get('/admin/add-quotes', [AdminQuoteController::class, 'index']);
