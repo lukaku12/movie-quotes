@@ -15,11 +15,11 @@
                             <h2 class="text-gray-600 italic">"{{ $quote->title }}"</h2>
                             <h1 class="text-center text-xl underline">{{ $quote->movie->title }}</h1>
                             <div class="flex justify-between w-full border-t pt-1">
-                                <button class="bg-amber-300 py-1 px-2 rounded-md hover:bg-amber-500">edit</button>
+                                <a href="/admin/all-quotes/{{ $quote->id }}/edit" class="bg-amber-300 py-1 px-2 rounded-md hover:bg-amber-500">edit</a>
                                 <form action="/admin/all-quotes/{{ $quote->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="bg-amber-300 py-1 px-2 rounded-md hover:bg-amber-500">delete</button>
+                                    <button type="submit" class="bg-amber-300 py-1 px-2 rounded-md hover:bg-amber-500">delete</button>
                                 </form>
                             </div>
                         </div>

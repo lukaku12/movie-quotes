@@ -13,7 +13,7 @@
                         <div class="bg-amber-50 p-3 w-full border border-slate-900 rounded-md rounded-t-none">
                             <h1 class="text-xl">{{ $movie->title }}</h1>
                             <div class="flex justify-between w-full border-t pt-1">
-                                <button class="bg-amber-300 py-1 px-2 rounded-md hover:bg-amber-500">edit</button>
+                                <a href="/admin/all-movies/{{ $movie->id }}/edit" class="bg-amber-300 py-1 px-2 rounded-md hover:bg-amber-500">edit</a>
                                 <form action="/admin/all-movies/{{ $movie->id }}" method="POST">
                                     @csrf
                                     @method('DELETE')
