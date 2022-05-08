@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
-// todo fix n+1 problem
+
 class AdminMovieController extends Controller
 {
 	public function index()
 	{
 		return view('admin.all-movies', [
-			'movies' => Movie::latest()->get(),
+			'movies' => Movie::with('quotes')->get(),
 		]);
 	}
 

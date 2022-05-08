@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Quote;
 
-// todo fix n+1 problem
 class AdminQuoteController extends Controller
 {
 	public function index(Quote $quote)
 	{
 		return view('admin.all-quotes', [
-			'quotes' => $quote::all(),
+			'quotes' => $quote::with('movie')->get(),
 		]);
 	}
 
