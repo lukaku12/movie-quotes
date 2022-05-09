@@ -26,6 +26,9 @@
                     </div>
                 @endforeach
             </div>
+            <div class="w-full h-auto mb-12">
+                {{ $quotes->links() }}
+            </div>
         </div>
     </div>
 </x-layout>

@@ -11,6 +11,6 @@
     }
 @endphp
 
-<a href="/{{ $language }}" {{ $attributes(['class' => $classes]) }}>
+<a href="{{ url($language) }}" {{ $attributes(['class' => $classes]) }}>
     {{ $language }}
 </a>

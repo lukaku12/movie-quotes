@@ -11,6 +11,11 @@ class MovieController extends Controller
 		$randomMovie = $movie::all()->random();
 		$chosenMovieQuote = $randomMovie->quotes;
 
+		if (empty($chosenMovieQuote->all()))
+		{
+			return redirect('/');
+		}
+
 		return view('index', [
 			'movie' => $randomMovie,
 			'quote' => $chosenMovieQuote,

@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//index page
+#USER SECTION
 Route::get('/', [MovieController::class, 'index']);
 Route::get('/movies/{movie:slug}', [MovieController::class, 'show']);
 #ADMIN SECTION

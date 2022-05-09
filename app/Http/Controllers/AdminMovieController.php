@@ -9,7 +9,7 @@ class AdminMovieController extends Controller
 	public function index()
 	{
 		return view('admin.all-movies', [
-			'movies' => Movie::with('quotes')->get(),
+			'movies' => Movie::with('quotes')->paginate(9)->withQueryString(),
 		]);
 	}
 
@@ -26,7 +26,7 @@ class AdminMovieController extends Controller
 		]);
 		Movie::create($attributes);
 
-		return redirect()->back();
+		return back()->with('success', 'Movie Has Been Added!');
 	}
 
 	public function edit(Movie $movie)
@@ -43,13 +43,13 @@ class AdminMovieController extends Controller
 
 		$movie->update($attributes);
 
-		return redirect('admin/all-movies');
+		return redirect('admin/all-movies')->with('success', 'Movie Has Been Updated!');
 	}
 
 	public function destroy(Movie $movie)
 	{
 		$movie->delete();
 
-		return back();
+		return back()->with('success', 'Movie Has Been Deleted!');
 	}
 }

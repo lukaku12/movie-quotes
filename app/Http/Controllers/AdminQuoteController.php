@@ -9,7 +9,7 @@ class AdminQuoteController extends Controller
 	public function index(Quote $quote)
 	{
 		return view('admin.all-quotes', [
-			'quotes' => $quote::with('movie')->get(),
+			'quotes' => $quote::with('movie')->paginate(9)->withQueryString(),
 		]);
 	}
 
@@ -29,7 +29,7 @@ class AdminQuoteController extends Controller
 
 		Quote::create($attributes);
 
-		return redirect()->back();
+		return back()->with('success', 'Quote Has Been Added!');
 	}
 
 	public function edit(Quote $quote)
@@ -50,17 +50,16 @@ class AdminQuoteController extends Controller
 		{
 			$attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
 		}
-//		dd($attributes);
 
 		$quote->update($attributes);
 
-		return redirect('admin/all-quotes');
+		return redirect('admin/all-quotes')->with('success', 'Quote Has Been Updated!');
 	}
 
 	public function destroy(Quote $quote)
 	{
 		$quote->delete();
 
-		return back();
+		return back()->with('success', 'Quote Has Been Deleted!');
 	}
 }

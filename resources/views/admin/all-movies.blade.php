@@ -7,9 +7,15 @@
                 {{-- movie--}}
                 @foreach($movies as $movie)
                     <div class="w-72">
+                        @if(!empty($movie->quotes->all()))
                         <img
                             class="border border-slate-900 rounded-xl rounded-b-none  aspect-video"
                             src="{{ asset('storage/' . $movie->quotes[0]->thumbnail) }}" alt="">
+                        @else
+                            <img
+                                class="border border-slate-900 rounded-xl rounded-b-none  aspect-video"
+                                src="{{ asset('storage/assets/notfound.png') }}" alt="">
+                        @endif
                         <div class="bg-amber-50 p-3 w-full border border-slate-900 rounded-md rounded-t-none">
                             <h1 class="text-xl">{{ $movie->title }}</h1>
                             <div class="flex justify-between w-full border-t pt-1">
@@ -23,6 +29,9 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+            <div class="w-full h-auto mb-12">
+                {{ $movies->links() }}
             </div>
         </div>
     </div>
