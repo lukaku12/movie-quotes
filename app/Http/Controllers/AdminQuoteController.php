@@ -20,12 +20,15 @@ class AdminQuoteController extends Controller
 
 	public function create()
 	{
+		$thumbnailPath = request()->file('thumbnail')->store('thumbnails');
+		$correctThumbnailPath = str_replace('thumbnails/', '', $thumbnailPath);
+
 		$attributes = request()->validate([
 			'title'     => 'required|min:3|max:200',
 			'thumbnail' => 'required|image',
 			'movie_id'  => 'required',
 		]);
-		$attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+		$attributes['thumbnail'] = $correctThumbnailPath;
 
 		Quote::create($attributes);
 

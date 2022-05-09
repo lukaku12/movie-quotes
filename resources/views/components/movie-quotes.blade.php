@@ -10,7 +10,7 @@
                         {{--TODO IMAGE--}}
                         <img
                             class="w-full border max-w-3xl border-slate-900 rounded-xl rounded-b-none"
-                            src="{{ asset('storage/' . $quote->thumbnail) }}" alt="">
+                            src="{{ asset('storage/thumbnails/' . $quote->thumbnail) }}" alt="">
                     </div>
                     <div class="text-2xl text-gray-700 bg-slate-50 px-2 py-5 border rounded-b-md">
                         <h2>“{{ $quote->title }}”</h2>

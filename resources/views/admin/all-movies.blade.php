@@ -10,7 +10,7 @@
                         @if(!empty($movie->quotes->all()))
                         <img
                             class="border border-slate-900 rounded-xl rounded-b-none  aspect-video"
-                            src="{{ asset('storage/' . $movie->quotes[0]->thumbnail) }}" alt="">
+                            src="{{ asset('storage/thumbnails/' . $movie->quotes[0]->thumbnail) }}" alt="">
                         @else
                             <img
                                 class="border border-slate-900 rounded-xl rounded-b-none  aspect-video"

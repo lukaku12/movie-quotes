@@ -30,14 +30,14 @@ Route::get('/admin/add-movie', [AdminMovieController::class, 'show'])->middlewar
 Route::post('/admin/add-movie/create', [AdminMovieController::class, 'create'])->middleware('admin');
 Route::delete('admin/all-movies/{movie}', [AdminMovieController::class, 'destroy'])->middleware('admin');
 
-Route::get('admin/all-movies/{movie}/edit', [AdminMovieController::class, 'edit']);
-Route::patch('admin/all-movies/{movie}', [AdminMovieController::class, 'update']);
+Route::get('admin/all-movies/{movie}/edit', [AdminMovieController::class, 'edit'])->middleware('admin');
+Route::patch('admin/all-movies/{movie}', [AdminMovieController::class, 'update'])->middleware('admin');
 //quote actions
 Route::get('/admin/all-quotes', [AdminQuoteController::class, 'index'])->middleware('admin');
 Route::get('/admin/add-quote', [AdminQuoteController::class, 'show'])->middleware('admin');
 Route::post('/admin/add-quote/create', [AdminQuoteController::class, 'create'])->middleware('admin');
 Route::delete('admin/all-quotes/{quote}', [AdminQuoteController::class, 'destroy'])->middleware('admin');
 
-Route::get('admin/all-quotes/{quote}/edit', [AdminQuoteController::class, 'edit']);
-Route::patch('admin/all-quotes/{quote}', [AdminQuoteController::class, 'update']);
+Route::get('admin/all-quotes/{quote}/edit', [AdminQuoteController::class, 'edit'])->middleware('admin');
+Route::patch('admin/all-quotes/{quote}', [AdminQuoteController::class, 'update'])->middleware('admin');
 #END ADMIN SECTION

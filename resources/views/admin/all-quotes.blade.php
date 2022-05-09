@@ -10,7 +10,7 @@
                     <div class="w-72">
                         <img
                             class="border border-slate-900 rounded-xl rounded-b-none  aspect-video"
-                            src="{{ asset('storage/' . $quote->thumbnail) }}" alt="">
+                            src="{{ asset('storage/thumbnails/' . $quote->thumbnail) }}" alt="">
                         <div class="bg-amber-50 p-3 w-full border border-slate-900 rounded-md rounded-t-none">
                             <h2 class="text-gray-600 italic">"{{ $quote->title }}"</h2>
                             <h1 class="text-center text-xl underline">{{ $quote->movie->title }}</h1>
