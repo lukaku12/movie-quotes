@@ -4,7 +4,7 @@
         <x-admin.navigation/>
         <div class="px-12 h-full overflow-auto w-full flex flex-col items-center">
             <h1 class="text-4xl my-5 text-amber-50">All Quotes</h1>
-            <div class="grid my-5 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5">
+            <div class="grid my-5 lg:grid-cols-3 auto-rows-auto md:grid-cols-2 sm:grid-cols-1 gap-5">
                 {{-- movie--}}
                 @foreach($quotes as $quote)
                     <div class="w-72">

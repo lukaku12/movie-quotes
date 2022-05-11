@@ -13,17 +13,33 @@
                 @csrf
                 <div class="mb-4">
                     <label
-                        for="title"
+                        for="title-en"
                         class="block font-medium text-gray-700 text-xl">
-                        Movie Title
+                        Movie Title En
                     </label>
                     <input
-                        id="title"
-                        name="title"
+                        id="title-en"
+                        name="title-en"
                         type="text"
                         required
                         class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    @error('title')
+                    @error('title-en')
+                    <p class="mt-1 text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="mb-4">
+                    <label
+                        for="title-ka"
+                        class="block font-medium text-gray-700 text-xl">
+                        Movie Title Ka
+                    </label>
+                    <input
+                        id="title-ka"
+                        name="title-ka"
+                        type="text"
+                        required
+                        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    @error('title-ka')
                     <p class="mt-1 text-red-600">{{ $message }}</p>
                     @enderror
                 </div>

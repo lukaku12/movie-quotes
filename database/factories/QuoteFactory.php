@@ -18,7 +18,7 @@ class QuoteFactory extends Factory
 	public function definition()
 	{
 		return [
-			'title'     => $this->faker->sentence(),
+			'title'     => ['en' => $this->faker->sentence(), 'ka' => $this->faker->sentence()],
 			'thumbnail' => $this->faker->image('public/storage/thumbnails', 640, 480, null, false),
 			'movie_id'  => Movie::factory(),
 		];

@@ -42,6 +42,8 @@ class AdminQuoteController extends Controller
 
 	public function update(Quote $quote)
 	{
+		$thumbnailPath = request()->file('thumbnail')->store('thumbnails');
+		$correctThumbnailPath = str_replace('thumbnails/', '', $thumbnailPath);
 		$newImageExists = request()->file('thumbnail') !== null;
 
 		$attributes = request()->validate([
@@ -51,7 +53,7 @@ class AdminQuoteController extends Controller
 		]);
 		if ($newImageExists)
 		{
-			$attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+			$attributes['thumbnail'] = $correctThumbnailPath;
 		}
 
 		$quote->update($attributes);
