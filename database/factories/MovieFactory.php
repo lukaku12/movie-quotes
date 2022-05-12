@@ -17,7 +17,7 @@ class MovieFactory extends Factory
 	public function definition()
 	{
 		return [
-			'title' => ['en' => $this->faker->sentence(), 'ka' => $this->faker->sentence()],
+			'title' => ['en' => $this->faker->sentence(), 'ka' => 'ფილმის სახელი'],
 			'slug'  => $this->faker->slug,
 		];
 	}

@@ -21,12 +21,18 @@ class AdminMovieController extends Controller
 	public function create()
 	{
 		$attributes = request()->validate([
-			'title' => 'required|min:3|max:200|unique:movies,title',
-			'slug'  => 'required|min:3|max:200|unique:movies,slug',
+			'titleEn'    => 'required|min:3|max:200|unique:movies,title',
+			'titleKa'    => 'required|min:3|max:200|unique:movies,title',
+			'slug'       => 'required|min:3|max:200|unique:movies,slug',
 		]);
-		Movie::create($attributes);
+		extract($attributes);
 
-		return back()->with('success', 'Movie Has Been Added!');
+		Movie::create([
+			'title' => ['en' => $titleEn, 'ka' => $titleKa],
+			'slug'  => $slug,
+		]);
+
+		return back()->with('success', __('ui.Movie Has Been Added!'));
 	}
 
 	public function edit(Movie $movie)
@@ -43,13 +49,13 @@ class AdminMovieController extends Controller
 
 		$movie->update($attributes);
 
-		return redirect('admin/all-movies')->with('success', 'Movie Has Been Updated!');
+		return redirect('admin/all-movies')->with('success', __('ui.Movie Has Been Updated!'));
 	}
 
 	public function destroy(Movie $movie)
 	{
 		$movie->delete();
 
-		return back()->with('success', 'Movie Has Been Deleted!');
+		return back()->with('success', __('ui.Movie Has Been Deleted!'));
 	}
 }

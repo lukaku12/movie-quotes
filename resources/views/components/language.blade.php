@@ -15,5 +15,5 @@
 @endphp
 
 <a href="{{ route('set-language', $language) }}" {{ $attributes(['class' => $classes]) }}>
-    {{ $language }}
+    {{ __('ui.' . $language) }}
 </a>

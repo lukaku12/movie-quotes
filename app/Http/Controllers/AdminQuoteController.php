@@ -24,15 +24,20 @@ class AdminQuoteController extends Controller
 		$correctThumbnailPath = str_replace('thumbnails/', '', $thumbnailPath);
 
 		$attributes = request()->validate([
-			'title'     => 'required|min:3|max:200',
-			'thumbnail' => 'required|image',
-			'movie_id'  => 'required',
+			'titleEn'     => 'required|min:3|max:200|unique:movies,title',
+			'titleKa'     => 'required|min:3|max:200|unique:movies,title',
+			'movie_id'    => 'required',
+			'thumbnail'   => 'required|image',
 		]);
-		$attributes['thumbnail'] = $correctThumbnailPath;
+		extract($attributes);
 
-		Quote::create($attributes);
+		Quote::create([
+			'title'     => ['en' => $titleEn, 'ka' => $titleKa],
+			'thumbnail' => $correctThumbnailPath,
+			'movie_id'  => $movie_id,
+		]);
 
-		return back()->with('success', 'Quote Has Been Added!');
+		return back()->with('success', __('ui.Quote Has Been Added!'));
 	}
 
 	public function edit(Quote $quote)
@@ -47,24 +52,32 @@ class AdminQuoteController extends Controller
 		$newImageExists = request()->file('thumbnail') !== null;
 
 		$attributes = request()->validate([
-			'title'     => 'required|min:3|max:200',
-			'thumbnail' => 'image',
-			'movie_id'  => 'required',
+			'titleEn'     => 'required|min:3|max:200|unique:movies,title',
+			'titleKa'     => 'required|min:3|max:200|unique:movies,title',
+			'movie_id'    => 'required',
+			'thumbnail'   => 'required|image',
 		]);
+		extract($attributes);
+
+		$data = [
+			'title'     => ['en' => $titleEn, 'ka' => $titleKa],
+			'movie_id'  => $movie_id,
+		];
+
 		if ($newImageExists)
 		{
-			$attributes['thumbnail'] = $correctThumbnailPath;
+			$data['thumbnail'] = $correctThumbnailPath;
 		}
 
-		$quote->update($attributes);
+		$quote->update($data);
 
-		return redirect('admin/all-quotes')->with('success', 'Quote Has Been Updated!');
+		return redirect('admin/all-quotes')->with('success', __('ui.Quote Has Been Updated!'));
 	}
 
 	public function destroy(Quote $quote)
 	{
 		$quote->delete();
 
-		return back()->with('success', 'Quote Has Been Deleted!');
+		return back()->with('success', __('ui.Quote Has Been Deleted!'));
 	}
 }
