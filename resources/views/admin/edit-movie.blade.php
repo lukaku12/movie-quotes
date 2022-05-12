@@ -1,3 +1,6 @@
+@php
+    $currentLocale = app()->getLocale('language')
+@endphp
 <x-layout>
     <div class="flex">
         <x-admin.navigation/>
@@ -14,18 +17,51 @@
                 @method('PATCH')
                 <div class="mb-4">
                     <label
-                        for="title"
+                        for="titleEn"
                         class="block font-medium text-gray-700 text-xl">
-                        {{__('ui.Movie Title')}}
+                        {{__('ui.Movie Title En')}}
                     </label>
+                    @php
+                        app()->setLocale('en')
+                    @endphp
                     <input
-                        id="title"
-                        name="title"
+                        id="titleEn"
+                        name="titleEn"
                         type="text"
                         value="{{ $movie->title }}"
                         required
                         class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    @error('title')
+                    @php
+                        if ($currentLocale === 'ka') {
+                            app()->setLocale('ka');
+                        }
+                    @endphp
+                    @error('titleEn')
+                    <p class="mt-1 text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="mb-4">
+                    <label
+                        for="titleKa"
+                        class="block font-medium text-gray-700 text-xl">
+                        {{__('ui.Movie Title Ka')}}
+                    </label>
+                    @php
+                        app()->setLocale('ka')
+                    @endphp
+                    <input
+                        id="titleKa"
+                        name="titleKa"
+                        type="text"
+                        value="{{ $movie->title }}"
+                        required
+                        class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    @php
+                        if ($currentLocale === 'en') {
+                            app()->setLocale('en');
+                        }
+                    @endphp
+                    @error('titleKa')
                     <p class="mt-1 text-red-600">{{ $message }}</p>
                     @enderror
                 </div>

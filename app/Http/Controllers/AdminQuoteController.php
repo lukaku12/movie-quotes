@@ -47,15 +47,12 @@ class AdminQuoteController extends Controller
 
 	public function update(Quote $quote)
 	{
-		$thumbnailPath = request()->file('thumbnail')->store('thumbnails');
-		$correctThumbnailPath = str_replace('thumbnails/', '', $thumbnailPath);
 		$newImageExists = request()->file('thumbnail') !== null;
 
 		$attributes = request()->validate([
 			'titleEn'     => 'required|min:3|max:200|unique:movies,title',
 			'titleKa'     => 'required|min:3|max:200|unique:movies,title',
 			'movie_id'    => 'required',
-			'thumbnail'   => 'required|image',
 		]);
 		extract($attributes);
 
@@ -66,9 +63,10 @@ class AdminQuoteController extends Controller
 
 		if ($newImageExists)
 		{
+			$thumbnailPath = request()->file('thumbnail')->store('thumbnails');
+			$correctThumbnailPath = str_replace('thumbnails/', '', $thumbnailPath);
 			$data['thumbnail'] = $correctThumbnailPath;
 		}
-
 		$quote->update($data);
 
 		return redirect('admin/all-quotes')->with('success', __('ui.Quote Has Been Updated!'));

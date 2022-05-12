@@ -43,11 +43,18 @@ class AdminMovieController extends Controller
 	public function update(Movie $movie)
 	{
 		$attributes = request()->validate([
-			'title' => 'required|min:3|max:200|unique:movies,title',
-			'slug'  => 'required|min:3|max:200|unique:movies,slug',
+			'titleEn' => 'required|min:3|max:200|unique:movies,title',
+			'titleKa' => 'required|min:3|max:200|unique:movies,title',
+			'slug'    => 'required|min:3|max:200|unique:movies,slug',
 		]);
+		extract($attributes);
 
-		$movie->update($attributes);
+		$data = [
+			'title' => ['en' => $titleEn, 'ka' => $titleKa],
+			'slug'  => $slug,
+		];
+
+		$movie->update($data);
 
 		return redirect('admin/all-movies')->with('success', __('ui.Movie Has Been Updated!'));
 	}
