@@ -11,7 +11,14 @@ class LanguageMiddleware
 	public function handle(Request $request, Closure $next)
 	{
 		$language = Session::get('language');
-		app()->setLocale($language);
+		if ($language)
+		{
+			app()->setLocale($language);
+		}
+		else
+		{
+			app()->setLocale('ka');
+		}
 
 		return $next($request);
 	}
