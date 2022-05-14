@@ -48,7 +48,7 @@ class AdminMovieController extends Controller
 		return back()->with('success', __('ui.Movie Has Been Deleted!'));
 	}
 
-	protected function ValidateMovie()
+	protected function ValidateMovie(): array
 	{
 		$attributes = request()->validate([
 			'titleEn' => 'required|min:3|max:200|unique:movies,title',
