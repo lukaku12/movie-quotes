@@ -20,17 +20,9 @@ class AdminMovieController extends Controller
 
 	public function create()
 	{
-		$attributes = request()->validate([
-			'titleEn'    => 'required|min:3|max:200|unique:movies,title',
-			'titleKa'    => 'required|min:3|max:200|unique:movies,title',
-			'slug'       => 'required|min:3|max:200|unique:movies,slug',
-		]);
-		extract($attributes);
+		$data = $this->ValidateMovie();
 
-		Movie::create([
-			'title' => ['en' => $titleEn, 'ka' => $titleKa],
-			'slug'  => $slug,
-		]);
+		Movie::create($data);
 
 		return back()->with('success', __('ui.Movie Has Been Added!'));
 	}
@@ -42,17 +34,7 @@ class AdminMovieController extends Controller
 
 	public function update(Movie $movie)
 	{
-		$attributes = request()->validate([
-			'titleEn' => 'required|min:3|max:200|unique:movies,title',
-			'titleKa' => 'required|min:3|max:200|unique:movies,title',
-			'slug'    => 'required|min:3|max:200|unique:movies,slug',
-		]);
-		extract($attributes);
-
-		$data = [
-			'title' => ['en' => $titleEn, 'ka' => $titleKa],
-			'slug'  => $slug,
-		];
+		$data = $this->ValidateMovie();
 
 		$movie->update($data);
 
@@ -64,5 +46,20 @@ class AdminMovieController extends Controller
 		$movie->delete();
 
 		return back()->with('success', __('ui.Movie Has Been Deleted!'));
+	}
+
+	protected function ValidateMovie()
+	{
+		$attributes = request()->validate([
+			'titleEn' => 'required|min:3|max:200|unique:movies,title',
+			'titleKa' => 'required|min:3|max:200|unique:movies,title',
+			'slug'    => 'required|min:3|max:200|unique:movies,slug',
+		]);
+		extract($attributes);
+
+		return $data = [
+			'title' => ['en' => $titleEn, 'ka' => $titleKa],
+			'slug'  => $slug,
+		];
 	}
 }
