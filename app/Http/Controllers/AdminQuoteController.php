@@ -27,7 +27,11 @@ class AdminQuoteController extends Controller
 
 	public function edit(Quote $quote)
 	{
-		return view('admin.edit-quote', ['quote' => $quote]);
+		return view('admin.edit-quote', [
+			'quote'        => $quote,
+			'quoteTitleEn' => $quote->getTranslation('title', 'en'),
+			'quoteTitleKa' => $quote->getTranslation('title', 'ka'),
+		]);
 	}
 
 	public function update(Quote $quote)

@@ -20,7 +20,7 @@ class AdminSessionController extends Controller
 		if (!auth()->attempt($attributes))
 		{
 			throw ValidationException::withMessages([
-				'email' => 'Your Provided credentials could not be Verified.',
+				'password' => 'Your Provided credentials could not be Verified.',
 			]);
 		}
 		session()->regenerate();

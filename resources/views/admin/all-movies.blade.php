@@ -4,7 +4,6 @@
         <div class="px-12 h-full overflow-auto w-full flex flex-col items-center">
             <h1 class="text-4xl my-5 text-amber-50">{{ __('ui.All Movies') }}</h1>
             <div class="grid my-5 lg:grid-cols-3 gap-5 md:grid-cols-2 sm:grid-cols-1">
-                {{-- movie--}}
                 @foreach($movies as $movie)
                     <div class="w-72">
                         @if(!empty($movie->quotes->all()))

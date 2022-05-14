@@ -29,7 +29,11 @@ class AdminMovieController extends Controller
 
 	public function edit(Movie $movie)
 	{
-		return view('admin.edit-movie', ['movie' => $movie]);
+		return view('admin.edit-movie', [
+			'movie'        => $movie,
+			'movieTitleEn' => $movie->getTranslation('title', 'en'),
+			'movieTitleKa' => $movie->getTranslation('title', 'ka'),
+		]);
 	}
 
 	public function update(Movie $movie)
