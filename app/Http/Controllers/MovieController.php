@@ -3,26 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
+use App\Models\Quote;
+use Illuminate\Contracts\View\View;
 
 class MovieController extends Controller
 {
-	public function index(Movie $movie)
+	public function index(): View
 	{
-		$randomMovie = $movie::all()->random();
-		$chosenMovieQuote = $randomMovie->quotes;
-
-		if (empty($chosenMovieQuote->all()))
-		{
-			return redirect('/');
-		}
+		$quote = Quote::with('movie')->get()->random();
 
 		return view('index', [
-			'movie' => $randomMovie,
-			'quote' => $chosenMovieQuote,
+			'quote' => $quote,
 		]);
 	}
 
-	public function show(Movie $movie)
+	public function show(Movie $movie): View
 	{
 		return view('components.movie-quotes', [
 			'movie'  => $movie,

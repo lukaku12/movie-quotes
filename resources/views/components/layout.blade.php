@@ -8,7 +8,7 @@
     <link rel = "icon" href ="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/1200px-Laravel.svg.png" type = "image/x-icon">
     <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ __('ui.Movie Quotes') }}</title>
+    <title>{{ __('ui.movie_quotes') }}</title>
 </head>
 <body class="bg-neutral-600 overflow-x-hidden">
     <x-language-wrapper/>

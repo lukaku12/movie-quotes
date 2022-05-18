@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\AdminMovieController;
-use App\Http\Controllers\AdminSessionController;
-use App\Http\Controllers\AdminQuoteController;
+use App\Http\Controllers\Admin\MovieController as AdminMovieController;
+use App\Http\Controllers\Admin\QuoteController as AdminQuoteController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\MovieController;
 use Illuminate\Support\Facades\Route;
@@ -18,30 +18,34 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => 'language'], function () {
-	#USER SECTION
-	Route::get('/', [MovieController::class, 'index']);
-	Route::get('set-language/{language}', [LanguageController::class, 'index'])->name('set-language');
-	Route::get('/movies/{movie:slug}', [MovieController::class, 'show']);
-	#ADMIN SECTION
+Route::group(['middleware' => ['language']], function () {
+	Route::get('/', [MovieController::class, 'index'])->name('movie.index');
+	Route::get('/set-language/{language}', [LanguageController::class, 'setLocale'])->name('set-language');
+	Route::get('/movies/{movie:slug}', [MovieController::class, 'show'])->name('movie.show');
+
 	//login
-	Route::get('/admin/login', [AdminSessionController::class, 'index'])->middleware('guest');
-	Route::post('/admin/sessions', [AdminSessionController::class, 'store'])->middleware('guest');
-	//movie actions
-	Route::get('/admin/all-movies', [AdminMovieController::class, 'index'])->middleware('admin');
-	Route::get('/admin/add-movie', [AdminMovieController::class, 'show'])->middleware('admin');
-	Route::post('/admin/add-movie/create', [AdminMovieController::class, 'create'])->middleware('admin');
-	Route::delete('admin/all-movies/{movie}', [AdminMovieController::class, 'destroy'])->middleware('admin');
+	Route::group(['middleware' => ['guest']], function () {
+		Route::get('/login', [AuthController::class, 'index'])->name('auth.index');
+		Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
+	});
 
-	Route::get('admin/all-movies/{movie}/edit', [AdminMovieController::class, 'edit'])->middleware('admin');
-	Route::patch('admin/all-movies/{movie}', [AdminMovieController::class, 'update'])->middleware('admin');
-	//quote actions
-	Route::get('/admin/all-quotes', [AdminQuoteController::class, 'index'])->middleware('admin');
-	Route::get('/admin/add-quote', [AdminQuoteController::class, 'show'])->middleware('admin');
-	Route::post('/admin/add-quote/create', [AdminQuoteController::class, 'create'])->middleware('admin');
-	Route::delete('admin/all-quotes/{quote}', [AdminQuoteController::class, 'destroy'])->middleware('admin');
+	Route::group(['prefix'=>'admin', 'middleware' => ['admin']], function () {
+		//movie actions
+		Route::get('/movies', [AdminMovieController::class, 'index'])->name('admin-movie.index');
+		Route::get('/movies/create', [AdminMovieController::class, 'create'])->name('admin-movie.create');
+		Route::post('/movies', [AdminMovieController::class, 'store'])->name('admin-movie.store');
+		Route::get('/movies/{movie}/edit', [AdminMovieController::class, 'edit'])->name('admin-movie.edit');
+		Route::patch('/movies/{movie}', [AdminMovieController::class, 'update'])->name('admin-movie.update');
+		Route::delete('/movies/{movie}', [AdminMovieController::class, 'destroy'])->name('admin-movie.destroy');
 
-	Route::get('admin/all-quotes/{quote}/edit', [AdminQuoteController::class, 'edit'])->middleware('admin');
-	Route::patch('admin/all-quotes/{quote}', [AdminQuoteController::class, 'update'])->middleware('admin');
-	#END ADMIN SECTION
+		// Refactor following Routes
+		//quote actions
+		Route::get('/quotes', [AdminQuoteController::class, 'index'])->name('admin-quote.index');
+		Route::get('/quotes/create', [AdminQuoteController::class, 'show'])->name('admin-quote.show');
+		Route::post('/quotes', [AdminQuoteController::class, 'store'])->name('admin-quote.store');
+		Route::get('/quotes/{quote}/edit', [AdminQuoteController::class, 'edit'])->name('admin-quote.edit');
+		Route::patch('/quotes/{quote}', [AdminQuoteController::class, 'update'])->name('admin-quote.update');
+		Route::delete('/quotes/{quote}', [AdminQuoteController::class, 'destroy'])->name('admin-quote.destroy');
+		#END ADMIN SECTION
+	});
 });

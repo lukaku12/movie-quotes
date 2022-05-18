@@ -1,11 +1,11 @@
-@props(['quote' => null])
+@props(['quote' => null, 'movies'])
 <label
     for="movie_id"
     class="block font-medium text-gray-700 text-xl">
-    {{__('ui.Movie Title')}}
+    {{__('ui.movie_title')}}
 </label>
 <select name="movie_id" id="movie_id"  class="rounded-xl p-3 mt-1">
-    @foreach(\App\Models\Movie::all() as $movie)
+    @foreach($movies as $movie)
         <option
             {{ $quote !== null && ($movie->id === $quote->movie->id ? 'selected' : '') }}
             value="{{ $movie->id }}"

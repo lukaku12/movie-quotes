@@ -3,7 +3,7 @@
     <label
         for="{{ $name }}"
         class="block text-xl font-semibold text-gray-700">
-        {{__("ui." . ucwords($translatable))}}
+        {{__("ui." . $translatable)}}
     </label>
     <div class="mt-1">
         <input

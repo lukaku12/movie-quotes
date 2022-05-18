@@ -1,7 +1,7 @@
 @props(['href', 'name'])
 @php
     $active = false;
-    $active = str_contains(url()->current(), $href);
+    $active = \Request::getRequestUri() == $href;
 
     $classes = 'p-3 rounded-xl border m-1';
     if ($active) {

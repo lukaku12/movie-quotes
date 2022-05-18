@@ -1,9 +1,9 @@
 <div class="w-72 bg-cyan-600 h-screen sticky top-0 left-0">
     <div class="p-4 text-white text-xl">
-        <h1 class="text-2xl">{{__('ui.DASHBOARD')}}</h1>
+        <h1 class="text-2xl">{{__('ui.dashboard')}}</h1>
     </div>
-    <x-admin.navigation-links href="/admin/all-movies" name="{{__('ui.All Movies')}}"  />
-    <x-admin.navigation-links href="/admin/all-quotes" name="{{__('ui.All Quotes')}}" />
-    <x-admin.navigation-links href="/admin/add-movie" name="{{__('ui.Add Movie')}}" />
-    <x-admin.navigation-links href="/admin/add-quote" name="{{__('ui.Add Quote')}}" />
+    <x-admin.navigation-links href="/admin/movies" name="{{__('ui.all_movies')}}" />
+    <x-admin.navigation-links href="/admin/quotes" name="{{__('ui.all_quotes')}}" />
+    <x-admin.navigation-links href="/admin/movies/create" name="{{__('ui.add_movie')}}" />
+    <x-admin.navigation-links href="/admin/quotes/create" name="{{__('ui.add_quote')}}" />
 </div>
