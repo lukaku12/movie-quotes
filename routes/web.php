@@ -23,14 +23,12 @@ Route::group(['middleware' => ['language']], function () {
 	Route::get('/set-language/{language}', [LanguageController::class, 'setLocale'])->name('set-language');
 	Route::get('/movies/{movie:slug}', [MovieController::class, 'show'])->name('movie.show');
 
-	//login
 	Route::group(['middleware' => ['guest']], function () {
 		Route::get('/login', [AuthController::class, 'index'])->name('auth.index');
 		Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 	});
 
 	Route::group(['prefix'=>'admin', 'middleware' => ['admin']], function () {
-		//movie actions
 		Route::get('/movies', [AdminMovieController::class, 'index'])->name('admin-movie.index');
 		Route::get('/movies/create', [AdminMovieController::class, 'create'])->name('admin-movie.create');
 		Route::post('/movies', [AdminMovieController::class, 'store'])->name('admin-movie.store');
@@ -38,14 +36,11 @@ Route::group(['middleware' => ['language']], function () {
 		Route::patch('/movies/{movie}', [AdminMovieController::class, 'update'])->name('admin-movie.update');
 		Route::delete('/movies/{movie}', [AdminMovieController::class, 'destroy'])->name('admin-movie.destroy');
 
-		// Refactor following Routes
-		//quote actions
 		Route::get('/quotes', [AdminQuoteController::class, 'index'])->name('admin-quote.index');
 		Route::get('/quotes/create', [AdminQuoteController::class, 'show'])->name('admin-quote.show');
 		Route::post('/quotes', [AdminQuoteController::class, 'store'])->name('admin-quote.store');
 		Route::get('/quotes/{quote}/edit', [AdminQuoteController::class, 'edit'])->name('admin-quote.edit');
 		Route::patch('/quotes/{quote}', [AdminQuoteController::class, 'update'])->name('admin-quote.update');
 		Route::delete('/quotes/{quote}', [AdminQuoteController::class, 'destroy'])->name('admin-quote.destroy');
-		#END ADMIN SECTION
 	});
 });
